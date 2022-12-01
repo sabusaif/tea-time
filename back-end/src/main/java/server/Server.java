@@ -65,15 +65,15 @@ public class Server {
       ParsedRequest request = CustomParser.parse(requestString);
       BaseHandler handler = HandlerFactory.getHandler(request);
       var builder = handler.handleRequest(request);
-      builder.setHeader("Content-type", "application/json");
+      builder.setHeader("Content-Type", "application/json");
       var httpRes = builder.build();
       return httpRes.toString();
     }catch (Exception e){
       return new HttpResponseBuilder()
-          .setStatus(StatusCodes.SERVER_ERROR)
-          .setBody(e.toString())
-          .build()
-          .toString();
+              .setStatus(StatusCodes.SERVER_ERROR)
+              .setBody(e.toString())
+              .build()
+              .toString();
     }
   }
 }
