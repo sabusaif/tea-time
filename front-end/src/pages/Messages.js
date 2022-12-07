@@ -1,10 +1,13 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
+import './Messages.css';
 
 function Messages(props) {
   const [toUser, setToUser] = React.useState('');
   const [text, setText] = React.useState('');
   const [error, setError] = React.useState('');
+
+  const [search, setSearch] = React.useState('');
 
   // conversation logic
   // current conversation Im in
@@ -71,10 +74,39 @@ function Messages(props) {
       });
   }
 
+  function filterMessage() {
+    if(!conversationId) return; // skip if no conversation selected
+    if(!search) {
+      getConversation();
+      return;
+    }
+    const cookies = new Cookies();
+    fetch('/getMessages?conversationId=' + conversationId + '&search=' + search, {
+      method: 'GET',
+      headers: {
+        auth: cookies.get('auth'), // makes the call authorized
+      }
+    })
+      .then(res => res.json())
+      .then(apiRes => {
+        console.log(apiRes);
+        if(apiRes.status){
+          setConversation(apiRes.data); // list of convos
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
   return (
     <div>
       <h1> Messages Page</h1>
       <h2>Welcome {props.loggedInUser}</h2>
+      <div id="search-bar">
+        <input value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <button onClick={filterMessage}>Search</button>
+      </div>
       <div>
         <div>
           To:
