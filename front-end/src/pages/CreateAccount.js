@@ -7,6 +7,8 @@ function CreateAccount() {
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
+  // added confirmPassword, this is to confirm account password
+  const [confirmPassword, setConfirmPassword] = React.useState('');
   const [status, setStatus] = React.useState(false);
 
   function handleSubmit() {
@@ -14,30 +16,34 @@ function CreateAccount() {
       userName: userName,
       password: password,
     };
-    fetch('/createUser', {
-      method: 'POST',
-      body: JSON.stringify(userDto),
-    })
-      .then(res => res.json())
-      .then(apiRes => {
-        console.log(apiRes);
-        if (!apiRes.status) {
-          setError(apiRes.message);
-        } else {
-          navigate('/login');
-        }
+    // if confirmPassword = password, then user is created
+    if (confirmPassword === password) {
+      fetch('/createUser', {
+        method: 'POST',
+        body: JSON.stringify(userDto),
       })
-      .catch(e => {
-        console.log(e);
-      })
+          .then(res => res.json())
+          .then(apiRes => {
+            console.log(apiRes);
+            if (!apiRes.status) {
+              setError(apiRes.message);
+            } else {
+              navigate('/login');
+            }
+          })
+          .catch(e => {
+            console.log(e);
+          })
+    }
   }
-
-  return (
+    // added confirm password field
+    return (
     <div>
       <h1> Create Account Page</h1>
       <div>
         <input value={userName} onChange={(e) => setUserName(e.target.value)} />
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+        <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" />
         <button onClick={handleSubmit}>Login</button>
       </div>
       <div>{error}</div>
