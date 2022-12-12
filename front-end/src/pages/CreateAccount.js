@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Design.css';
 
 
 function CreateAccount() {
@@ -9,7 +10,7 @@ function CreateAccount() {
   const [error, setError] = React.useState('');
   // added confirmPassword, this is to confirm account password
   const [confirmPassword, setConfirmPassword] = React.useState('');
-  const [status, setStatus] = React.useState(false);
+  // const [status, setStatus] = React.useState(false);
 
   function handleSubmit() {
     const userDto = {
@@ -39,12 +40,15 @@ function CreateAccount() {
     // added confirm password field
     return (
     <div>
-      <h1> Create Account Page</h1>
-      <div>
-        <input value={userName} onChange={(e) => setUserName(e.target.value)} />
-        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
-        <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" />
-        <button onClick={handleSubmit}>Login</button>
+      <h1 class="header">Create Account Page</h1>
+      <div class="input">
+        <input placeholder="Username" class="info"
+          value={userName} onChange={(e) => setUserName(e.target.value)} />
+        <input placeholder="Password" class="info"
+          value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+        <input placeholder="Confirm Password" class="info"
+          value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" />
+        <button onClick={handleSubmit} id="submit">Create Account</button>
       </div>
       <div>{error}</div>
     </div>

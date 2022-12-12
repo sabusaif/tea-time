@@ -1,12 +1,14 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import './Messages.css';
+import './Design.css';
 
 function Messages(props) {
   const [toUser, setToUser] = React.useState('');
   const [text, setText] = React.useState('');
   const [error, setError] = React.useState('');
 
+  // search will be passed to the back-end
   const [search, setSearch] = React.useState('');
 
   // conversation logic
@@ -74,13 +76,16 @@ function Messages(props) {
       });
   }
 
+  // this function will only return messages that contains the word the user inputted
   function filterMessage() {
     if(!conversationId) return; // skip if no conversation selected
+    // if the user searches nothing, then it will just show the whole conversation
     if(!search) {
       getConversation();
       return;
     }
     const cookies = new Cookies();
+    // it will look at one specific conversation
     fetch('/getMessages?conversationId=' + conversationId + '&search=' + search, {
       method: 'GET',
       headers: {
@@ -101,7 +106,7 @@ function Messages(props) {
 
   return (
     <div>
-      <h1> Messages Page</h1>
+      <h1 class="header">Messages Page</h1>
       <h2>Welcome {props.loggedInUser}</h2>
       <div id="search-bar">
         <input value={search} onChange={(e) => setSearch(e.target.value)}/>
