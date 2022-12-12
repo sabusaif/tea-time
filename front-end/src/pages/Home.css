@@ -1,0 +1,17 @@
+#home {
+    background-image: url(cafe.webp);
+    background-size: cover;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    font-family: "MV Boli", serif;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px rgba(97, 67, 12, 0.95);
+    color: #cec29c;
+}
+
+#text {
+    padding-top: 20%;
+}

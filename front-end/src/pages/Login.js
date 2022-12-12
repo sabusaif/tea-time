@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Design.css';
 
 function Login(props) {
   const navigate = useNavigate();
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
-  const [status, setStatus] = React.useState(false);
+  //const [status, setStatus] = React.useState(false);
 
   function handleSubmit() {
     const userDto = {
@@ -36,11 +37,13 @@ function Login(props) {
 
   return (
     <div>
-      <h1> Login Page</h1>
-      <div>
-        <input value={userName} onChange={(e) => setUserName(e.target.value)} />
-        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
-        <button onClick={handleSubmit}>Login</button>
+      <h1 class="header">Login Page</h1>
+      <div class="input">
+        <input placeholder="Username" class="info" 
+          value={userName} onChange={(e) => setUserName(e.target.value)} />
+        <input placeholder="Password" class="info" 
+          value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+        <button onClick={handleSubmit} id="submit">Login</button>
       </div>
       <div>{error}</div>
     </div>

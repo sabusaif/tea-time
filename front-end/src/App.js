@@ -31,21 +31,24 @@ function App() {
         <div className='nav'>
           <nav>
             <ul>
-              <li>
-                <Link to="/">Home</Link>
+              <li class="home">
+                <Link to="/">
+                  <img src="https://images.vexels.com/media/users/3/215480/isolated/preview/7e94d464b2285ac152b2a6721306001e-coffee-cup-saucer-stroke.png"
+                    alt="Home" height="40vmin"/>
+                </Link>
               </li>
               {!isLoggedIn && (
-                <li>
+                <li id="other">
                   <Link to="/createAccount">Create Account</Link>
                 </li>
               )}
               {!isLoggedIn && (
-                <li>
+                <li id="other">
                   <Link to="/login">Login</Link>
                 </li>
               )}
               {isLoggedIn && (
-                <li>
+                <li id="other">
                   <Link to="/messages">Messages</Link>
                 </li>
               )}

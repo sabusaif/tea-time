@@ -1,0 +1,64 @@
+html {
+    background-color: #cec29c;
+}
+
+.header {
+    margin: 50px 20% 50px 20%;
+    /* this is to add a background to the title */
+    background-image: url("cafe.webp");
+    background-size: cover;
+    background-position: 0px;
+    background-position-y: -147px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 0 2px rgba(138, 116, 76, 0.95);
+
+    /* this is the text for the title */
+    font-family: "MV Boli", serif;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px rgba(97, 67, 12, 0.95);
+    color: #cec29c;
+    text-align: center;
+    align-self: center;
+    padding: 50px;
+    padding-bottom: 40px;
+}
+
+.input {
+    display: grid;
+    height: 25vh;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-image: url(teacup.webp);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 80px;
+}
+
+.info {
+    padding-left: 5px;
+    opacity: 0.5;
+    font-family: "MV Boli", serif;
+}
+
+.info:hover, .info:focus, .info:not(:placeholder-shown) {
+    opacity: 1;
+}
+
+#submit {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-color: #cec29c;
+    font-family: "MV Boli", serif;
+}
+
+#submit:hover {
+    background-color: #c7b57c;
+}
