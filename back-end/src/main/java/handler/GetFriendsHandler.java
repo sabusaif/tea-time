@@ -3,8 +3,6 @@ package handler;
 import dao.ConversationDao;
 import dao.UserDao;
 import dto.ConversationDto;
-import dto.MessageDto;
-import dao.MessageDao;
 import dto.UserDto;
 import handler.AuthFilter.AuthResult;
 import org.bson.Document;
@@ -22,7 +20,7 @@ public class GetFriendsHandler implements BaseHandler {
     public HttpResponseBuilder handleRequest(ParsedRequest request) {
         ConversationDao conversationDao = ConversationDao.getInstance();
         UserDao userDao = UserDao.getInstance();
-        MessageDao messageDao = MessageDao.getInstance();
+
         AuthResult authResult = AuthFilter.doFilter(request);
         if(!authResult.isLoggedIn){
             return new HttpResponseBuilder().setStatus(StatusCodes.UNAUTHORIZED);
