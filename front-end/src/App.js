@@ -53,6 +53,11 @@ function App() {
                   <Link to="/messages">Messages</Link>
                 </li>
               )}
+              {isLoggedIn && (
+                <li id="other">
+                  <Link to="/userSearch">User Search</Link>
+                </li>
+              )}
             </ul>
           </nav>
 
