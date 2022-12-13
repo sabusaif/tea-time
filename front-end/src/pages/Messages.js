@@ -140,7 +140,7 @@ function Messages(props) {
   }
 
   function renderMessage(message) {
-    if (message.length >= encryptConst.length && message.substring(0, encryptConst.length) == encryptConst) {
+    if (message.length >= encryptConst.length && message.substring(0, encryptConst.length) === encryptConst) {
       return <label>Encrypted: <button onClick={() => setEncryptedMessage(message)}>Decrypt</button></label>
     } else {
       return message;
@@ -150,58 +150,60 @@ function Messages(props) {
   return (
     <div>
       <h1 class="header">Messages Page</h1>
-      <h2>Welcome {props.loggedInUser}</h2>
+      <h2 class="text" id="title">Welcome {props.loggedInUser}</h2>
       <div class="flex-container">
         <div id="search-bar">
-          <h2>Search</h2>
-          <input value={search} onChange={(e) => setSearch(e.target.value)}/>
-          <button onClick={filterMessage}>Search</button>
+          <h2 class="text">Search</h2>
+          <input placeholder="filter message" class="info message_box" value={search} onChange={(e) => setSearch(e.target.value)}/>
+          <button onClick={filterMessage} class="text" id="submit_message">Search</button>
         </div>
         <div id="message-bar">
-          <h2>Message</h2>
-          <div>
+          <h2 class="text">Message</h2>
+          <div class="text" id="to_message">
             To:
-            <input value={toUser} onChange={(e) => setToUser(e.target.value)}/>
+            <input placeholder="enter user" class="info message_box" id="blank" value={toUser} onChange={(e) => setToUser(e.target.value)}/>
           </div>
-          <textarea value={text} onChange={(e) => setText(e.target.value)}/>
+          <textarea class="info" id="blank_box" value={text} onChange={(e) => setText(e.target.value)}/>
           <br />
           <br />
           <div>
-            <label>Encrypt: <input value={doEncrypt} onChange={(e) => {setDoEncrypt(e.target.checked)}} type="checkbox"></input></label>
+            <label class="text">Encrypt: <input value={doEncrypt} onChange={(e) => {setDoEncrypt(e.target.checked)}} type="checkbox"></input></label>
             {doEncrypt && 
               (<div>
                 <br />
-                <label>Password: <input value={encryptPassword} onChange={(e) => setEncryptPassword(e.target.value)}></input></label>
+                <label class="text">Password: <input class="info message_box" placeholder="password"
+                  value={encryptPassword} onChange={(e) => setEncryptPassword(e.target.value)}></input></label>
               </div>)}
           </div>
           <br />
           <div>
-              <button onClick={sendMessage}>Send</button>
+              <button onClick={sendMessage} class="text" id="submit_message">Send</button>
           </div>
           {error}
 
           <div>
             {conversation.map(convo => (
-              <div>
+              <div class="text">
                 {renderMessage(convo.message)}
               </div>
             ))}
           </div>
         </div>
         <div id="decrypt-bar">
-          <h2>Decrypt</h2>
-          <p>Encrypted Message: <label id="encMessage">
+          <h2 class="text">Decrypt</h2>
+          <p class="text">Encrypted Message: <label id="encMessage">
               {encryptedMessage.substring(encryptConst.length + 10, 
                 (encryptedMessage.length >= encryptConst.length + 20) ? 
                   encryptConst.length + 20 :
                   encryptedMessage.length)}
             </label>
           </p>
-          <label>Password: </label>
-          <input value={decryptPassword} onChange={(e) => setDecryptPassword(e.target.value)}/>
+          <label class="text">Password: </label>
+          <input class="info message_box" placeholder="password" 
+            value={decryptPassword} onChange={(e) => setDecryptPassword(e.target.value)}/>
           <br />
-          <button onClick={decryptMessage}>Decrypt</button>
-          <p>Message: <label>{decryptedMessage}</label></p>
+          <button onClick={decryptMessage} class="text" id="submit_message">Decrypt</button>
+          <p class="text">Message: <label>{decryptedMessage}</label></p>
         </div>
       </div>
     </div>

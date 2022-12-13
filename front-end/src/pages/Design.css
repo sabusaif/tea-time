@@ -44,6 +44,27 @@ html {
     font-family: "MV Boli", serif;
 }
 
+.text {
+    font-family: "MV Boli", serif;
+    color: #0c350762;
+    text-shadow: 0px 0px 0px rgba(131, 90, 13, 0.95);
+}
+
+.message_box {
+    border-radius: 5px;
+}
+
+#blank {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#blank_box {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+}
+
 .info:hover, .info:focus, .info:not(:placeholder-shown) {
     opacity: 1;
 }
@@ -59,6 +80,26 @@ html {
     font-family: "MV Boli", serif;
 }
 
-#submit:hover {
+#submit:hover, #submit_message:hover {
     background-color: #c7b57c;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#title {
+    font-size: 40px;
+    border-top: 0px;
+    margin-bottom: 0px;
+}
+
+#submit_message {
+    border-radius: 5px;
+    border-color: #cec29c;
+    font-family: "MV Boli", serif;
+}
+
+#width {
+    width: 300px;
 }
