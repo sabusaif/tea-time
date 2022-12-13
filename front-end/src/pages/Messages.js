@@ -13,6 +13,9 @@ function Messages(props) {
   // search will be passed to the back-end
   const [search, setSearch] = React.useState('');
 
+  // this will be used to add the people the user has messaged
+  const [friends, setFriends] = React.useState([]);
+
   const [doEncrypt, setDoEncrypt] = React.useState('');
   const [decryptPassword, setDecryptPassword] = React.useState('');
   const [encryptPassword, setEncryptPassword] = React.useState('');
@@ -120,6 +123,45 @@ function Messages(props) {
       });
   }
 
+  // this function will show the user a list of people they have already messaged
+  function listOfFriends() {
+    const cookies = new Cookies();
+    // it will send the currentUser to the back-end
+    fetch('/getFriends?currentUser=' + props.loggedInUser, {
+      method: 'GET',
+      headers: {
+        auth: cookies.get('auth'), // makes the call authorized
+      }
+    })
+      .then(res => res.json())
+      .then(apiRes => {
+        console.log(apiRes);
+        if(apiRes.status){
+          setFriends(apiRes.data); // list of friends
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
+      showOrHide();
+  }
+
+
+  // the user can toggle the button to hide and show friends
+  function showOrHide() {
+    // if friend list is showing
+    if (document.getElementById("show_friends").innerText === "Hide Friends") {
+      document.getElementById("click").style.display = "none";
+      // since everything is now hidden, they will be able to show 
+      document.getElementById("show_friends").innerText = "Show Friends";
+    // if friend list isn't showing  
+    } else {
+      document.getElementById("click").style.display = "block";
+      // since the list is now visible, the user can hide it
+      document.getElementById("show_friends").innerText = "Hide Friends";
+    }
+  }
+
   function decryptMessage() {
     var message = encryptedMessage
     if (message.length > encryptConst.length) {
@@ -144,7 +186,7 @@ function Messages(props) {
     var timestamp = new Date(convo.timestamp)
 
     var t = <label>{timestamp.getHours().toString() + ":" + 
-      (timestamp.getMinutes().toString().length == 1 ?
+      (timestamp.getMinutes().toString().length === 1 ?
         "0" + timestamp.getMinutes().toString() :
         timestamp.getMinutes().toString())} </label>
     var i = null
@@ -171,6 +213,16 @@ function Messages(props) {
           <h2 class="text">Search</h2>
           <input placeholder="filter message" class="info message_box" value={search} onChange={(e) => setSearch(e.target.value)}/>
           <button onClick={filterMessage} class="text" id="submit_message">Search</button>
+          <div>
+            <button onClick={listOfFriends} class="text" id="show_friends">Show Friends</button>
+            <div id="click">
+              {friends.map(friend => (
+              <div>
+                {friend.userName}
+              </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div id="message-bar">
           <h2 class="text">Message</h2>

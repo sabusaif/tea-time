@@ -94,10 +94,21 @@ button:hover {
     margin-bottom: 0px;
 }
 
-#submit_message {
+#submit_message, #show_friends {
     border-radius: 5px;
     border-color: #cec29c;
     font-family: "MV Boli", serif;
+}
+
+#show_friends {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+#click {
+    padding-bottom: 4px;
+    font-family: "MV Boli", serif;
+    color: #413203;
 }
 
 #width {
