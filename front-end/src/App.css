@@ -44,11 +44,17 @@
   padding: 0;
   display: flex;
   justify-content: center;
-  background: #e1e1e1;
+  background: #ceb86f;
 }
 
 .nav li {
   padding: 20px;
-  background: #f1f1f1;
-  border: 1px solid #e4e4e4;
+  background: #c49e4c8a;
+  border: 1px solid #ceb86f;
+  border-radius: 3px;
+}
+
+#other {
+  padding-top: 30px;
+  font-family: "MV Boli", serif;
 }

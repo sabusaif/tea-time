@@ -1,4 +1,21 @@
 #search-bar {
     text-align: left;
-    padding-left: 10px;
 }
+
+#decrypt-bar {
+    text-align: left;
+}
+
+.flex-container {
+    justify-content: center;
+    display: flex;
+}
+
+.flex-container > div {
+    margin: 10px;
+    padding: 0px 5%;
+}
+
+/* .encMessage > * {
+    font-size: 5px;
+} */
