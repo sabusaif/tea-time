@@ -41,4 +41,8 @@ public class UserDao extends BaseDao<UserDto> {
             .collect(Collectors.toList());
   }
 
+  public List<Document> getAll(){
+    return collection.find().into(new ArrayList<>());
+  }
+
 }
