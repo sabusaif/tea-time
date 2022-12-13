@@ -195,7 +195,7 @@ function Messages(props) {
           </div>
           {error}
 
-          <div>
+          <div id="messages">
             {conversation.map(convo => (
               <div>
                 {renderMessage(convo)}

@@ -7,3 +7,4 @@ Please implement a full endpoint for the back end, and a full standalone feature
 Update this readme with who implemented which feature.
 
 Pasang Sherpa(TimedT): UserSearch(getUsershandler and the UserSearch.js) 
+Chance Vodnoy(esgameco): Browser-side message encryption, Edit message handler/browser support
