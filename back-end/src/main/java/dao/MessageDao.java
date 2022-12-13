@@ -34,6 +34,16 @@ public class MessageDao extends BaseDao<MessageDto> {
     collection.insertOne(messageDto.toDocument());
   }
 
+  public void update(Document filter, String newMessage) {
+    ArrayList<Document> res = collection.find(filter).into(new ArrayList<>());
+
+    for (var i : res) {
+      Document newDoc = new Document(i);
+      newDoc.put("message", newMessage);
+      collection.findOneAndReplace(i, newDoc);
+    }
+  }
+
   public List<MessageDto> query(Document filter){
     return collection.find(filter)
             .into(new ArrayList<>())

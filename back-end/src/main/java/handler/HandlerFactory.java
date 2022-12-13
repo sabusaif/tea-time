@@ -20,6 +20,8 @@ public class HandlerFactory {
         return new GetMessagesHandler();
       case "/getUsers":
         return new GetUsersHandler();
+      case "/editMessage":
+        return new EditMessageHandler();
       default:
         return new FallbackHandler();
     }
