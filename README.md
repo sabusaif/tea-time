@@ -8,3 +8,4 @@ Update this readme with who implemented which feature.
 
 Pasang Sherpa(TimedT): UserSearch(getUsershandler and the UserSearch.js) 
 Chance Vodnoy(esgameco): Browser-side message encryption, Edit message handler/browser support
+Sarah Abusaif(sabusaif): after sending a message to someone, the user can search and filter messages (used both the backend and frontend to do this); worked on the css and designed the website
