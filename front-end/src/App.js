@@ -12,6 +12,7 @@ import CreateAccount from './pages/CreateAccount';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Messages from './pages/Messages';
+import UserSearch from './pages/UserSearch';
 
 const cookies = new Cookies();
 
@@ -78,6 +79,7 @@ function App() {
               />
             <Route path="/createAccount" element={<CreateAccount />} />
             <Route path="/" element={<Home setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
+            <Route path="/userSearch" element={<UserSearch />} />
           </Routes>
         </div>
       </Router>
