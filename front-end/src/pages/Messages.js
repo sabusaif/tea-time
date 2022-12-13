@@ -139,12 +139,27 @@ function Messages(props) {
     return AES.encrypt(message, encryptPassword).toString();
   }
 
-  function renderMessage(message) {
+  function renderMessage(convo) {
+    var message = convo.message
+    var timestamp = new Date(convo.timestamp)
+
+    var t = <label>{timestamp.getHours().toString() + ":" + 
+      (timestamp.getMinutes().toString().length == 1 ?
+        "0" + timestamp.getMinutes().toString() :
+        timestamp.getMinutes().toString())} </label>
+    var i = null
+
     if (message.length >= encryptConst.length && message.substring(0, encryptConst.length) === encryptConst) {
-      return <label>Encrypted: <button onClick={() => setEncryptedMessage(message)}>Decrypt</button></label>
+      i = <label> Encrypted: <button onClick={() => setEncryptedMessage(message)}>Decrypt</button></label>
     } else {
-      return message;
+      i = message
     }
+
+    if (message.length > 0)
+      return <div>
+        {t}
+        {i}
+      </div>
   }
 
   return (
@@ -181,10 +196,10 @@ function Messages(props) {
           </div>
           {error}
 
-          <div>
+          <div id="messages">
             {conversation.map(convo => (
               <div class="text">
-                {renderMessage(convo.message)}
+                {renderMessage(convo)}
               </div>
             ))}
           </div>
