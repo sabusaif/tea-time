@@ -28,9 +28,9 @@ public class EditMessageHandler implements BaseHandler {
 
         // There is no unique id for message, so I'm just using the message/timestamp as the id
         var filter = new Document()
-                .append("message", request.getQueryParam("message"))
-                .append("timestamp", Long.valueOf(request.getQueryParam("timestamp")));
-        messageDao.update(filter, newMessageDto.getMessage());
+                .append("message", newMessageDto.getMessage())
+                .append("timestamp", newMessageDto.getTimestamp());
+        messageDao.update(filter, request.getQueryParam("newMessage"));
 
         return new HttpResponseBuilder().setStatus("200 OK");
     }
