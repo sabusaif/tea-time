@@ -26,6 +26,8 @@ public class HandlerFactory {
       // this case will return a list of who the user is in a conversation with
       case "/getFriends":
         return new GetFriendsHandler();
+      case "/changePassword":
+        return new ChangePasswordHandler();
       default:
         return new FallbackHandler();
     }

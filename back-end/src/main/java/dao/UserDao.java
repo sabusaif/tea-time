@@ -1,6 +1,8 @@
 package dao;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import dto.UserDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,11 @@ public class UserDao extends BaseDao<UserDto> {
 
   public List<Document> getAll(){
     return collection.find().into(new ArrayList<>());
+  }
+
+  public void changePassword(UserDto userDto, String newPassword) {
+    collection.updateOne(Filters.eq("userName",userDto.getUserName()), 
+      Updates.set("password", newPassword));
   }
 
 }

@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Messages from './pages/Messages';
 import UserSearch from './pages/UserSearch';
+import AccountSettings from './pages/AccountSettings';
 
 const cookies = new Cookies();
 
@@ -55,6 +56,11 @@ function App() {
               )}
               {isLoggedIn && (
                 <li id="other">
+                  <Link to="/accountSettings" id="other">Account Settings</Link>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li id="other">
                   <Link to="/userSearch" id="other">User Search</Link>
                 </li>
               )}
@@ -76,6 +82,15 @@ function App() {
             <Route 
               path="/login" 
               element={<Login 
+                setIsLoggedIn={setIsLoggedIn} 
+                isLoggedIn={isLoggedIn} 
+                setLoggedInUser={setLoggedInUser}
+                loggedInUser={loggedInUser}
+                />} 
+              />
+            <Route 
+              path="/accountSettings" 
+              element={<AccountSettings
                 setIsLoggedIn={setIsLoggedIn} 
                 isLoggedIn={isLoggedIn} 
                 setLoggedInUser={setLoggedInUser}
