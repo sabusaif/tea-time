@@ -189,12 +189,15 @@ function Messages(props) {
   function editMessage() {
     if(!isEditing) return; // skip if not editing
     const cookies = new Cookies();
-    fetch('/editMessage?message=' + currentEditInfo['message'] + '&timestamp=' + currentEditInfo['timestamp'], {
+    fetch('/editMessage?newMessage=' + editNewMessage, {
       method: 'POST',
       headers: {
         auth: cookies.get('auth'), // makes the call authorized
       },
-      body: JSON.stringify({message: editNewMessage}),
+      body: JSON.stringify({
+        message: currentEditInfo['message'],
+        timestamp: currentEditInfo['timestamp']
+      }),
     })
       .then(res => res.json())
       .then(apiRes => {
@@ -216,12 +219,10 @@ function Messages(props) {
       (timestamp.getMinutes().toString().length === 1 ?
         "0" + timestamp.getMinutes().toString() :
         timestamp.getMinutes().toString())} </label>
-    var i = null
+    var i = message
 
     if (message.length >= encryptConst.length && message.substring(0, encryptConst.length) === encryptConst) {
       i = <label> Encrypted: <button onClick={() => setEncryptedMessage(message)}>Decrypt</button></label>
-    } else {
-      i = message
     }
 
     if (message.length > 0)
@@ -229,9 +230,9 @@ function Messages(props) {
         {t}
         {i}
         <button onClick={() => {setIsEditing(true);setCurrentEditInfo({
-          message: message,
+          message: convo.message,
           timestamp: convo.timestamp
-        });console.log(currentEditInfo)}}>Edit</button>
+        })}}>Edit</button>
         {isEditing && 
           currentEditInfo['message'] === convo.message && 
           currentEditInfo['timestamp'] === convo.timestamp &&
