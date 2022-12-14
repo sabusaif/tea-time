@@ -1,5 +1,5 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
+import './Design.css';
 
 
 function UserSearch() {
@@ -27,11 +27,11 @@ function UserSearch() {
     return (
         <div>
             <div>
-                <h2> User Search</h2>
+                <h2 class="header"> User Search</h2>
             </div>
             <div>
-                <input value={userName} onChange={(e) => setUserName(e.target.value)} />
-                <button onClick={filterUsernames}> Search </button>
+                <input placeholder="search user" class="info message_box" id="width" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                <button onClick={filterUsernames} class="text" id="submit_message"> Search </button>
             </div>
             <div>
                 {users.map(name => (

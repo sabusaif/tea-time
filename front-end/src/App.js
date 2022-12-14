@@ -40,22 +40,22 @@ function App() {
               </li>
               {!isLoggedIn && (
                 <li id="other">
-                  <Link to="/createAccount">Create Account</Link>
+                  <Link to="/createAccount" id="other">Create Account</Link>
                 </li>
               )}
               {!isLoggedIn && (
                 <li id="other">
-                  <Link to="/login">Login</Link>
+                  <Link to="/login" id="other">Login</Link>
                 </li>
               )}
               {isLoggedIn && (
                 <li id="other">
-                  <Link to="/messages">Messages</Link>
+                  <Link to="/messages" id="other">Messages</Link>
                 </li>
               )}
               {isLoggedIn && (
                 <li id="other">
-                  <Link to="/userSearch">User Search</Link>
+                  <Link to="/userSearch" id="other">User Search</Link>
                 </li>
               )}
             </ul>

@@ -16,10 +16,16 @@ public class HandlerFactory {
         return new GetConversationHandler();
       case "/createMessage":
         return new CreateMessageHandler();
+      // this case will return a list of messages depending on what the user searched
       case "/getMessages":
         return new GetMessagesHandler();
       case "/getUsers":
         return new GetUsersHandler();
+      case "/editMessage":
+        return new EditMessageHandler();
+      // this case will return a list of who the user is in a conversation with
+      case "/getFriends":
+        return new GetFriendsHandler();
       default:
         return new FallbackHandler();
     }
