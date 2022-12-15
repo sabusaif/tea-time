@@ -24,6 +24,11 @@ function Messages(props) {
 
   const encryptConst = 'wFKOuajQbjBYwbKX'
 
+  // edit window state
+  const [isEditing, setIsEditing] = React.useState('');
+  const [currentEditInfo, setCurrentEditInfo] = React.useState('');
+  const [editNewMessage, setEditNewMessage] = React.useState('');
+
   // conversation logic
   // current conversation Im in
   const [conversationId, setConversationId] = React.useState('');
@@ -181,6 +186,31 @@ function Messages(props) {
     return AES.encrypt(message, encryptPassword).toString();
   }
 
+  function editMessage() {
+    if(!isEditing) return; // skip if not editing
+    const cookies = new Cookies();
+    fetch('/editMessage?newMessage=' + editNewMessage, {
+      method: 'POST',
+      headers: {
+        auth: cookies.get('auth'), // makes the call authorized
+      },
+      body: JSON.stringify({
+        message: currentEditInfo['message'],
+        timestamp: currentEditInfo['timestamp']
+      }),
+    })
+      .then(res => res.json())
+      .then(apiRes => {
+        console.log(apiRes);
+        if(apiRes.status){
+          setConversation(apiRes.data); // list of convos
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
   function renderMessage(convo) {
     var message = convo.message
     var timestamp = new Date(convo.timestamp)
@@ -189,18 +219,27 @@ function Messages(props) {
       (timestamp.getMinutes().toString().length === 1 ?
         "0" + timestamp.getMinutes().toString() :
         timestamp.getMinutes().toString())} </label>
-    var i = null
+    var i = message
 
     if (message.length >= encryptConst.length && message.substring(0, encryptConst.length) === encryptConst) {
       i = <label> Encrypted: <button onClick={() => setEncryptedMessage(message)}>Decrypt</button></label>
-    } else {
-      i = message
     }
 
     if (message.length > 0)
       return <div>
         {t}
         {i}
+        <button onClick={() => {setIsEditing(true);setCurrentEditInfo({
+          message: convo.message,
+          timestamp: convo.timestamp
+        })}}>Edit</button>
+        {isEditing && 
+          currentEditInfo['message'] === convo.message && 
+          currentEditInfo['timestamp'] === convo.timestamp &&
+            <div>
+              <input value={editNewMessage} onChange={(e) => setEditNewMessage(e.target.value)}></input>
+              <button onClick={() => {editMessage()}}>Submit</button>
+            </div>}
       </div>
   }
 
@@ -247,6 +286,7 @@ function Messages(props) {
               <button onClick={sendMessage} class="text" id="submit_message">Send</button>
           </div>
           {error}
+          <br />
 
           <div id="messages">
             {conversation.map(convo => (

@@ -16,6 +16,6 @@
     padding: 0px 5%;
 }
 
-.messages {
-    text-align:left;
+#messages {
+    text-align: left;
 }
