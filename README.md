@@ -1,15 +1,11 @@
 # Final Project
 
-Each team member choose 1 front end feature and 1 back end feature to add. An example could be adding a list of all conversations and being able to switch to them, add feature to display usernames on the chat ui, add back end endpoint to reload a user session when user refreshes page. Be creative.
+## Who Implemented What Feature
 
-Please implement a full endpoint for the back end, and a full standalone feature on the front end. Each person's score will be separate and graded accordingly. Shared 10% of score is from live demo.
-
-Update this readme with who implemented which feature.
+Sarah Abusaif(sabusaif): after sending a message to someone, the user can search and filter messages (used both the back-end (GetMessagesHandler) and front-end to do this (Messages.js)); the user can press a button to show or hide a list of others who they are in a conversation with (back-end (GetFriendsHandler) and front-end (Messages.js)); worked on the css and designed the website (front-end (Design.css))
 
 Pasang Sherpa(TimedT): UserSearch(getUsershandler and the UserSearch.js) 
 
 Chance Vodnoy(esgameco): Browser-side message encryption, Edit message handler/browser support
-
-Sarah Abusaif(sabusaif): after sending a message to someone, the user can search and filter messages (used both the back-end (GetMessagesHandler) and front-end to do this (Messages.js)); the user can press a button to show or hide a list of others who they are in a conversation with (back-end (GetFriendsHandler) and front-end (Messages.js)); worked on the css and designed the website (front-end (Design.css))
 
 Jacob Perez(JPerezKart64): added password confirmation for create account and change password in account settings
