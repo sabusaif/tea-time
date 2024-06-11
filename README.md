@@ -1,4 +1,4 @@
-# Final Project
+# Tea Time Project
 
 ## Who Implemented What Feature
 
